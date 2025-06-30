@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+body{
+    background-color: #FFF8E7;
+    color: #FF388E;
+}
+
+input:hover{
+    border: 0px;
+    box-shadow: 0 0 0 .45rem #FF388E45;
+}
