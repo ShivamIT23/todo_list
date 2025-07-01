@@ -1,11 +1,31 @@
-<main class="w-dvw max-w-6xl h-screen overflow-hidden px-[5vw] py-[8vh] flex flex-col mx-auto gap-10">
+<main
+  class="w-dvw max-w-6xl h-screen overflow-hidden px-[5vw] py-[8vh] flex flex-col mx-auto gap-10"
+>
   <h1 class="text-6xl text-center font-extrabold text-[#E63A04]">To-Do List</h1>
   <div class="w-full flex justify-center mx-auto">
-    <input type="text" name="" placeholder="Add new to-do" class="w-[85%] border-2 text-xl placeholder-pink-400 rounded-lg focus-visible::border-[#777777] font-semibold capitalize px-2 border-[#777777] p-1 mx-auto">
-    <button class="bg-[#FF388E] w-[10%] flex justify-center items-center text-white rounded-xl font-medium p-2">✚</button>
+    <input
+    (keyup.enter)="addTodo()"
+      type="text"
+      name=""
+      placeholder="Add new to-do"
+      class="w-[85%] border-2 text-xl placeholder-pink-400 rounded-lg focus-visible::border-[#777777] font-semibold capitalize px-2 border-[#777777] p-1 mx-auto"
+      [(ngModel)]="input"
+    />
+    <button (click)="addTodo()"
+      class="bg-[#FF388E] w-[10%] flex justify-center items-center text-white rounded-xl font-medium p-2"
+    >
+      ✚
+    </button>
   </div>
-  <div class="w-full px-[2vw] text-xl gap-4 font-medium min-h-fit flex flex-col items-start">
-    <p class="flex gap-10 items-center"><span><input type="checkbox" name="" > ◆  Go to Gym</span> <button>🗑</button></p>
-    <p class="flex gap-10 items-center"><span><input type="checkbox" name="" > ◆ Drink Water</span> <button>🗑</button></p>
-  </div>
+  <section
+    class="w-full px-[1.2vw] text-xl gap-4 font-medium min-h-fit flex flex-col items-start"
+  >
+  @for(todo of todos; track todo.id){
+    <div class="flex gap-4 items-center border-2 border-gray-400 rounded-lg p-2" id="{{todo.id}}">
+      <input type="checkbox" name="" (click)="checkTodo(todo.id)" [checked]="todo.checked()" />
+      <span class="text-xl capitalize {{todo.checked() ? 'line-through decoration-black text-red-500' : 'line-through-none text-green-600'}}">  {{todo.title}}</span>
+      <button (click)="deleteTodo(todo.id)">🗑</button>
+    </div>
+  }
+  </section>
 </main>
